@@ -21,6 +21,43 @@
 
 import UIKit
 
+@objc public class SPPermissionBridge: NSObject {
+    @objc public static func show(from: UIViewController, type: String, permissions: Array<String>) {
+        var selectedPermissions: [SPPermission] = []
+
+        for permission in permissions {
+            if permission == "Camera" {
+                selectedPermissions.append(.camera)
+            } else if permission == "Contacts" {
+                selectedPermissions.append(.contacts)
+            } else if permission == "Calendar" {
+                selectedPermissions.append(.calendar)
+            } else if permission == "PhotoLibrary" {
+                selectedPermissions.append(.photoLibrary)
+            } else if permission == "Notification" {
+                selectedPermissions.append(.notification)
+            } else if permission == "Microphone" {
+                selectedPermissions.append(.microphone)
+            } else if permission == "Reminders" {
+                selectedPermissions.append(.reminders)
+            } else if permission == "SpeechRecognizer" {
+                selectedPermissions.append(.speech)
+            } else if permission == "Location" {
+                selectedPermissions.append(.locationAlwaysAndWhenInUse)
+            } else if permission == "Motion" {
+                selectedPermissions.append(.motion)
+            } else if permission == "MediaLibrary" {
+                selectedPermissions.append(.mediaLibrary)
+            } else if permission == "Bluetooth" {
+                selectedPermissions.append(.bluetooth)
+            }
+        }
+        
+        let controller = SPPermissions.dialog(selectedPermissions)
+        controller.present(on: from)
+    }
+}
+
 public enum SPPermissions {
     
     /**
