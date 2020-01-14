@@ -54,6 +54,8 @@ import UIKit
         }
         
         let controller = SPPermissions.dialog(selectedPermissions)
+//        controller.delegate = delegate
+
         controller.present(on: from)
     }
 }
