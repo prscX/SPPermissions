@@ -22,7 +22,7 @@
 import UIKit
 
 @objc public class SPPermissionBridge: NSObject {
-    @objc public static func show(from: UIViewController, type: String, permissions: Array<String>) {
+    @objc public static func show(from: UIViewController, delegate: SPPermissionsDelegate, type: String, permissions: Array<String>) {
         var selectedPermissions: [SPPermission] = []
 
         for permission in permissions {
@@ -54,7 +54,7 @@ import UIKit
         }
         
         let controller = SPPermissions.dialog(selectedPermissions)
-//        controller.delegate = delegate
+        controller.delegate = delegate
 
         controller.present(on: from)
     }
